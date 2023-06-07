@@ -1,5 +1,5 @@
 # task_tracker
-
+Lista de tarefa, utilizando Vue 3 e como estilo, Bulma para estilo
 ## Project setup
 ```
 npm install
@@ -22,3 +22,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+Bulma [Bulma.io](https://bulma.io/).

@@ -6,10 +6,7 @@
       </div>
       <div class="column">
         <div class="is-flex is-align-items-center is-justify-content-space-between">
-          <section>
-            <!--  Repare que eu não vou executar uma função, eu só estou chamando o tempo decorrido, porque o Vue sabe que por baixo dos panos o 'tempoDecorrido' vai funcionar como se fosse uma propriedade do estado do componente, só que calculado. Então nós o definimos como método, porém acessamos como uma propriedade. -->
-            <strong>{{ tempoDecorrido }}</strong>
-          </section>
+          <OCronometro :tempoEmSegundos="tempoEmSegundos" />
           <button class="button" @click="iniciar">
             <span class="icon">
               <i class="fas fa-play"></i>
@@ -30,28 +27,24 @@
 
 <script>
 import { defineComponent } from 'vue'
+import OCronometro from './OCronometro.vue'
 export default defineComponent ({
   name: 'OFormulario',
+  components:  { OCronometro },
   data () {
     return {
-      tempoEmSegundos: 0
-    }
-  },
-  computed: {
-    // vai monitorar uma informação, e conforme essa informação for alterada ele vai reagir e vai se atualizar.
-    tempoDecorrido () {
-      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11,8)
+      tempoEmSegundos: 0,
+      cronometro: 0
     }
   },
   methods: {
     iniciar () {
-      setInterval (() => {
+      this.cronometro = setInterval (() => {
         this.tempoEmSegundos += 1
       }, 1000)
-      console.log('Iniciando');
     },
     finalizar () {
-      console.log('Finalizando');
+      clearInterval(this.cronometro)
     }
   }
 })

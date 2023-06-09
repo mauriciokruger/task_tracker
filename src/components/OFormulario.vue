@@ -5,21 +5,7 @@
         <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?">
       </div>
       <div class="column">
-        <div class="is-flex is-align-items-center is-justify-content-space-between">
-          <OCronometro :tempoEmSegundos="tempoEmSegundos" />
-          <button class="button" @click="iniciar">
-            <span class="icon">
-              <i class="fas fa-play"></i>
-            </span>
-            <span>play</span>
-          </button>
-          <button class="button" @click="finalizar">
-            <span class="icon">
-              <i class="fas fa-stop"></i>
-            </span>
-            <span>stop</span>
-          </button>
-        </div>
+        <OTemporizador />
       </div>
     </div>
   </div>
@@ -27,25 +13,13 @@
 
 <script>
 import { defineComponent } from 'vue'
-import OCronometro from './OCronometro.vue'
+import OTemporizador from './OTemporizador.vue'
 export default defineComponent ({
   name: 'OFormulario',
-  components:  { OCronometro },
+  components:  { OTemporizador },
   data () {
-    return {
-      tempoEmSegundos: 0,
-      cronometro: 0
-    }
+    return {}
   },
-  methods: {
-    iniciar () {
-      this.cronometro = setInterval (() => {
-        this.tempoEmSegundos += 1
-      }, 1000)
-    },
-    finalizar () {
-      clearInterval(this.cronometro)
-    }
-  }
+  methods: {}
 })
 </script>

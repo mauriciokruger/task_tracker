@@ -2,10 +2,15 @@
   <div class="box">
     <div class="columns">
       <div class="column is-8" role="form" aria-label="Formulário para criação de uma nova tarefa">
-        <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?">
+        <input
+          type="text"
+          class="input"
+          placeholder="Qual tarefa você deseja iniciar?"
+          v-model="descricao"
+        >
       </div>
       <div class="column">
-        <OTemporizador />
+        <OTemporizador @aoTemporizadorFinalizado="finalizarTarefa" />
       </div>
     </div>
   </div>
@@ -18,8 +23,15 @@ export default defineComponent ({
   name: 'OFormulario',
   components:  { OTemporizador },
   data () {
-    return {}
+    return {
+      descricao: ''
+    }
   },
-  methods: {}
+  methods: {
+    finalizarTarefa (tempoDecorrido) {
+      console.log(tempoDecorrido)
+      this.descricao = ''
+    }
+  }
 })
 </script>

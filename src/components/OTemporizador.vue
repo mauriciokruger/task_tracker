@@ -1,27 +1,19 @@
 <template>
-  <div class="is-flex is-align-items-center is-justify-content-space-between">
-      <OCronometro :tempoEmSegundos="tempoEmSegundos" />
-      <button class="button" @click="iniciar" :disabled="cronometroRodando">
-        <span class="icon">
-          <i class="fas fa-play"></i>
-        </span>
-        <span>play</span>
-      </button>
-      <button class="button" @click="finalizar" :disabled="!cronometroRodando">
-        <span class="icon">
-          <i class="fas fa-stop"></i>
-        </span>
-        <span>stop</span>
-      </button>
-    </div>
+  <section class="is-flex is-align-items-center is-justify-content-space-between">
+    <OCronometro :tempoEmSegundos="tempoEmSegundos" />
+    <OsBotoes @clicado="iniciar" icone="fas fa-play" texto="play" :desabilitado="cronometroRodando" />
+    <OsBotoes @clicado="finalizar" icone="fas fa-stop" texto="stop" :desabilitado="!cronometroRodando" />
+  </section>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 import OCronometro from './OCronometro.vue'
+import OsBotoes from './OsBotoes.vue'
 export default defineComponent ({
   name: 'OTemporizador',
-  components:  { OCronometro },
+  components:  { OCronometro, OsBotoes },
+  emits: ['aoTemporizadorFinalizado'],
   data () {
     return {
       tempoEmSegundos: 0,
@@ -39,6 +31,8 @@ export default defineComponent ({
     finalizar () {
       this.cronometroRodando = false
       clearInterval(this.cronometro)
+      this.$emit('aoTemporizadorFinalizado', this.tempoEmSegundos)
+      this.tempoEmSegundos = 0
     }
   }
 })

@@ -21,15 +21,27 @@ import { defineComponent } from 'vue'
 import OTemporizador from './OTemporizador.vue'
 export default defineComponent ({
   name: 'OFormulario',
+  emits: ['aoSalvarTarefa'],
   components:  { OTemporizador },
   data () {
     return {
-      descricao: ''
+      descricao: '',
+      tarefa: {
+        duracaoEmSegundos: 0,
+        descricao: ''
+      }
+      
     }
   },
   methods: {
     finalizarTarefa (tempoDecorrido) {
-      console.log(tempoDecorrido)
+      this.tarefa.duracaoEmSegundos = tempoDecorrido
+      this.tarefa.descricao = this.descricao
+      this.$emit('aoSalvarTarefa', this.tarefa)
+      this.tarefa = {
+        duracaoEmSegundos: 0,
+        descricao: ''
+      }
       this.descricao = ''
     }
   }

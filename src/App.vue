@@ -4,9 +4,9 @@
       <BarraLateral />
     </div>
     <div class="column is-three-quarter">
-      <OFormulario />
+      <OFormulario @aoSalvarTarefa="salvarTarefa" />
       <div class="lista">
-        <ATarefa />
+        <ATarefa :tarefa="tarefa" v-for="(tarefa, index) in tarefas" :key="index" />
       </div>
     </div>
   </main>
@@ -19,7 +19,21 @@ import ATarefa from './components/ATarefa.vue'
 
 export default {
   name: "App",
-  components: { BarraLateral, OFormulario, ATarefa }
+  components: { 
+    BarraLateral,
+    OFormulario,
+    ATarefa
+  },
+  data () {
+    return {
+      tarefas: []
+    }
+  },
+  methods: {
+    salvarTarefa (tarefa) {
+      this.tarefas.push(tarefa)
+    }
+  }
 }
 </script>
 

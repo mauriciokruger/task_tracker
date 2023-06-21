@@ -1,22 +1,24 @@
 <template>
-  <div class="box has-text-weight-bold">
+  <OAviso>
     <div class="columns">
       <div class="column is-7">
-        Descrição da tarefa
+        {{tarefa.descricao || 'Tarefa sem descrição'}}
       </div>
-      <div class="column ">
-        <OCronometro :tempoEmSegundos="15" />
+      <div class="column">
+        <OCronometro :tempoEmSegundos="tarefa.duracaoEmSegundos" />
       </div>
     </div>
-  </div>
+  </OAviso>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 import OCronometro from './OCronometro.vue'
+import OAviso from './OAviso.vue'
 export default defineComponent ({
   name: 'ATarefa',
-  components:  { OCronometro },
+  props: ['tarefa'],
+  components:  { OCronometro, OAviso },
   data () {
     return {
     }

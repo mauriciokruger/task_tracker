@@ -9,7 +9,7 @@
 <script>
 import { defineComponent } from 'vue'
 export default defineComponent ({
-  name: 'BarraLateral',
+  name: 'BarraLateral'
 })
 </script>
 

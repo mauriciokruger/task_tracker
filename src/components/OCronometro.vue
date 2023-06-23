@@ -1,7 +1,7 @@
 <template>
   <section>
     <!--  Repare que eu não vou executar uma função, eu só estou chamando o tempo decorrido, porque o Vue sabe que por baixo dos panos o 'tempoDecorrido' vai funcionar como se fosse uma propriedade do estado do componente, só que calculado. Então nós o definimos como método, porém acessamos como uma propriedade. -->
-    <strong>{{ tempoDecorrido }}</strong>
+    <strong class="display">{{ tempoDecorrido }}</strong>
   </section>
 </template>
 
@@ -23,3 +23,8 @@
     },
   })
 </script>
+<style scoped>
+.display {
+  color: var(--texto-primario);
+}
+</style>
